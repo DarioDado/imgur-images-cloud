@@ -4,5 +4,8 @@ export default {
   },
   setData(key,data) {
     window.localStorage.setItem(key,data);
-  }
+  },
+  deleteData(key) {
+    window.localStorage.removeItem(key);
+  },
 }

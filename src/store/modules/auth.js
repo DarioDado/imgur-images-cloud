@@ -1,6 +1,7 @@
 import api from '../../api/imgur';
 import qs from 'qs';
 import localStorage from '../../services/localStorageService';
+import { router } from '../../main';
 
 const state = {
   token: localStorage.getData('imgur_token')
@@ -19,9 +20,11 @@ const actions = {
     const token = queryStringParams.access_token;
     commit('setToken', token);
     localStorage.setData('imgur_token', token);
+    router.push('/');
   },
   logout: ({ commit }) => {
     commit('setToken', null);
+    localStorage.deleteData('imgur_token');
   }
 };
 
