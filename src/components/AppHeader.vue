@@ -39,6 +39,12 @@ export default {
   .logged-in-menu {
     display: flex;
   }
+  a {
+    font-size: 16px;
+  }
+  .ui.item:hover {
+    background-color: #eee !important;
+  }
 </style>
 
 
