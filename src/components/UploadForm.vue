@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div v-if="isLoggedIn" class="dropper">
-      <input type="file" @change="uploadImages($event.target.files)" multiple accept="image/*">
-      <span>Drag files here!</span>
+    <div v-if="isLoggedIn">
+      <div class="dropper">
+        <input type="file" @change="uploadImages($event.target.files)" multiple accept="image/*">
+        <span>Drag files here!</span>
+      </div>
+      <uploading v-if="uploading"></uploading>
     </div>
     <login-message v-else></login-message>
   </div>
@@ -11,13 +14,15 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import LoginMessage from './LoginMessage';
+import Uploading from './Uploading';
 export default {
   name: 'UploadForm',
   components: {
     LoginMessage,
+    Uploading,
   },
   computed: {
-    ...mapGetters(['isLoggedIn']),
+    ...mapGetters(['isLoggedIn','uploading']),
   },
   methods: {
     ...mapActions(['uploadImages']),
