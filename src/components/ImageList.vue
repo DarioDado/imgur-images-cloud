@@ -1,15 +1,22 @@
 <template>
-  <div class="images-container">
-    <img v-for="image in allImages" :src="image.link" :key="image.id">
+  <div>
+    <div v-if="isLoggedIn" class="images-container">
+      <img v-for="image in allImages" :src="image.link" :key="image.id">
+    </div>
+    <login-message v-else></login-message>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import LoginMessage from './LoginMessage';
 export default {
   name: 'ImageList',
+  components: {
+    LoginMessage,
+  },
   computed: {
-    ...mapGetters(['allImages']),
+    ...mapGetters(['allImages','isLoggedIn']),
   },
   methods: {
     ...mapActions(['fetchImages']),

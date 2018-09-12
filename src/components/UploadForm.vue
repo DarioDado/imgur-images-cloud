@@ -1,16 +1,24 @@
 <template>
   <div>
-    <div class="dropper">
+    <div v-if="isLoggedIn" class="dropper">
       <input type="file" @change="uploadImages($event.target.files)" multiple accept="image/*">
       <span>Drag files here!</span>
     </div>
+    <login-message v-else></login-message>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import LoginMessage from './LoginMessage';
 export default {
   name: 'UploadForm',
+  components: {
+    LoginMessage,
+  },
+  computed: {
+    ...mapGetters(['isLoggedIn']),
+  },
   methods: {
     ...mapActions(['uploadImages']),
   }
