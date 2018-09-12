@@ -19,4 +19,16 @@ export default {
     });
     return response.data.data;
   },
+  uploadImages(images,token) {
+    const promises = Array.from(images).map(image => {
+      const formdata = new FormData();
+      formdata.append('image', image);
+      return Axios.post(`${ROOT_URL}/3/image`, formdata, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+    });
+    return Promise.all(promises);
+  },
 }
