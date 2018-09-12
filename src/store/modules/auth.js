@@ -1,8 +1,9 @@
 import api from '../../api/imgur';
 import qs from 'qs';
+import localStorage from '../../services/localStorageService';
 
 const state = {
-  token: null,
+  token: localStorage.getData('imgur_token')
 };
 
 const getters = {
@@ -17,6 +18,7 @@ const actions = {
     const queryStringParams = qs.parse(hash.replace('#',''));
     const token = queryStringParams.access_token;
     commit('setToken', token);
+    localStorage.setData('imgur_token', token);
   },
   logout: ({ commit }) => {
     commit('setToken', null);
