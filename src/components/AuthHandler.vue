@@ -5,8 +5,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: 'AuthHandler',
+  methods: {
+    ...mapActions(['finalizeLogin']),
+  },
+  //vue lifecycle method created
+  created() {
+    this.finalizeLogin(window.location.hash);
+  }
 }
 </script>
 
