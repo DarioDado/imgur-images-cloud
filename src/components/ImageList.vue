@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="isLoggedIn" class="images-container">
-      <img v-for="image in allImages" :src="image.link" :key="image.id">
+      <image-item v-for="image in allImages" :key="image.id" :image="image"></image-item>
     </div>
     <login-message v-else></login-message>
   </div>
@@ -10,10 +10,12 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import LoginMessage from './LoginMessage';
+import ImageItem from './ImageItem';
 export default {
   name: 'ImageList',
   components: {
     LoginMessage,
+    ImageItem,
   },
   computed: {
     ...mapGetters(['allImages','isLoggedIn']),
@@ -31,10 +33,6 @@ export default {
   .images-container {
     column-count: 3;
     column-gap: 0;
-  }
-  img {
-    max-width: 100%;
-    padding: 5px;
   }
 </style>
 
