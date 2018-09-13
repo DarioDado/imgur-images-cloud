@@ -1,13 +1,14 @@
 import qs from 'qs';
 import Axios from 'axios';
-const CLIENT_ID = '9d9bf7f523254c8';
+const CLIENT_ID_LOCALHOST = '9d9bf7f523254c8';
 const CLIENT_ID_PRODUCTION = '8ed73a6f840d318';
 const ROOT_URL = 'https://api.imgur.com';
 
 export default {
   login() {
+    const client_id = (window.location.hostname === 'localhost') ? CLIENT_ID_LOCALHOST : CLIENT_ID_PRODUCTION;
     const querystring = {
-      client_id: CLIENT_ID_PRODUCTION,
+      client_id,
       response_type: 'token',
     }
     window.location = `${ROOT_URL}/oauth2/authorize?${qs.stringify(querystring)}`;
