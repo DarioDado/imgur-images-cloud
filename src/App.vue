@@ -15,4 +15,11 @@ export default {
 }
 </script>
 
+<style>
+.body-modal {
+  overflow: hidden;
+}
+</style>
+
+
 

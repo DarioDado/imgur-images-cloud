@@ -1,15 +1,23 @@
 <template>
   <div class="image-wraper">
     <img :src="image.link" >
-    <i class="trash icon"></i>
+    <i class="trash icon" @click="onDelete"></i>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: 'ImageItem',
   props: {
     image: Object,
+  },
+  methods: {
+    ...mapActions(['showDeleteModal']),
+    onDelete(){
+      const deleteHash = this.image.deletehash
+      this.showDeleteModal(deleteHash);
+    }
   }
 }
 </script>

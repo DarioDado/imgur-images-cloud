@@ -33,4 +33,11 @@ export default {
     });
     return Promise.all(promises);
   },
+  deleteImage(deleteHash,token) {
+    return Axios.delete(`${ROOT_URL}/3/account/me/image/${deleteHash}`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }); 
+  },
 }
